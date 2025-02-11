@@ -1,0 +1,136 @@
+ sudo yum update
+    2  clear
+    3  aws configure
+    4  clear
+    5  which awscli
+    6  curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.3/2024-12-12/bin/linux/amd64/kubectl
+    7  curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.3/2024-12-12/bin/linux/amd64/kubectl.sha256
+    8  sha256sum -c kubectl.sha256
+    9  chmod +x ./kubectl
+   10  mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+   11  echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+   12  # for ARM systems, set ARCH to: `arm64`, `armv6` or `armv7`
+   13  ARCH=amd64
+   14  PLATFORM=$(uname -s)_$ARCH
+   15  curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+   16  # (Optional) Verify checksum
+   17  curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+   18  tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+   19  sudo mv /tmp/eksctl /usr/local/bin
+   20  eksctl create cluster --name=cluster-1 --nodes=4
+   21  kubectl get nodes
+   22  kubectl get svc
+   23  clear
+   24  kubectl get ns
+   25  kubectl get nodes
+   26  kubectl describe node ip-192-168-2-181.ap-south-1.compute.internal
+   27  kubectl get nodes
+   28  kubectl get ns
+   29  vi nginx.yml
+   30  kubectl apply -f nginx.yml
+   31  kubetcl get deploy
+   32  kubectl get deploy
+   33  kubectl get pods
+   34  clear
+   35  kubectl get deploy
+   36  kubectl get pods
+   37  kubectl describe pod nginx-deployment-77d8468669-7kgjc
+   38  kubectl get nodes
+   39  kubectl get svc
+   40  vi nginx.yml
+   41  clear
+   42  kubectl get pods
+   43  kubectl delete pod nginx-deployment-77d8468669-7kgjc
+   44  kubectl get pods
+   45  vi nginx.yml
+   46  kubectl apply -f nginx.yml
+   47  kubectl get pods
+   48  vi nginx.yml
+   49  kubectl apply -f nginx.yml
+   50  kubectl get pods
+   51  kubectl delete pod nginx-deployment-77d8468669-qfq25
+   52  kubectl get pods
+   53  kubectl get deploy
+   54  kubectl edit deploy nginx-deployment
+   55  kubectl get pods
+   56  vi nginx.yml
+   57  ls
+   58  rm -r nginx.yml
+   59  ls
+   60  kubectl get pods
+   61  kubectl get deploy
+   62  kubectl edit deploy nginx-deployment
+   63  kubectl get deploy nginx-deployment -o yml
+   64  clear
+   65  kubectl get deploy nginx-deployment -oyml
+   66  kubectl get deploy nginx-deployment -oyaml
+   67  vi nginx.yml
+   68  ls
+   69  vi nginx.yml
+   70  kubectl apply -f nginx.yml
+   71  kubectl get pods
+   72  vi nginx.yml
+   73  kubectl apply -f nginx.yml
+   74  vi nginx.yml
+   75  kubectl apply -f nginx.yml
+   76  kubectl get pods
+   77  clear
+   78  kubectl get deploy
+   79  kubectl get deploy nginx-deployment -oyaml
+   80* rm -r nginx.yaml
+   81  vi nginx.yaml
+   82  kubectl get pods
+   83  kubectl apply -f nginx.yaml
+   84  kubectl get pods
+   85  kubectl apply -f nginx.yml
+   86  kubectl apply -f nginx.yaml
+   87  clear
+   88  kubectl create ns dev
+   89  kubectl get namespace
+   90  vi knote.yml
+   91  rm -r knote.yml
+   92  vi knote.yml
+   93  kubectl apply -f knote.yml -n dev
+   94  kubectl get deploy
+   95  kubectl get deploy -n dev
+   96  kubectl get pods -n dev
+   97  kubectl get svc -n dev
+   98  vi knote.yml
+   99  kubectl apply -f knote.yml -n dev
+  100  kubectl get svc -n dev
+  101  clear
+  102  kubectl get svc -n dev
+  103  vi knote.yml
+  104  kubectl get svc -n dev
+  105  nslookup aa65f8cc6ddf44eab99737430ed19f72-1998387785.ap-south-1.elb.amazonaws.com
+  106  vi knote.yml
+  107  kubectl apply -f knote.yml -n dev
+  108  kubectl get svc -n dev
+  109  kubectl apply -f knote.yml
+  110  kubectl get svc
+  111  vi knote.yml
+  112  rm -r knote.yml 
+  113  vi knote.yml
+  114  clear
+  115  kubectl get deploy
+  116  kubectl delete deploy knote
+  117  kubectl get deploy -n dev
+  118  kubectl delete deploy knote -n dev
+  119  kubectl get deploy
+  120  kubectl get deploy -n dev
+  121  clear
+  122  ls
+  123  vi mongo.yml
+  124  kubectl apply -f mongo.yml -n dev
+  125  kubectl get deploy -n dev
+  126  kubectl apply -f knote.yml -n dev
+  127  kubectl get deploy -n dev
+  128  kubectl get svc -n dev
+  129  vi mongo.yml
+  130  vi knote.yml 
+  131  eksctl create delete --name=cluster-1 --nodes=4
+  132  eksctl delete cluster --name=cluster-1 --nodes=4
+  133  eksctl delete cluster --name=cluster-1
+  134  kubectl get nodes
+  135  clear
+  136  history
